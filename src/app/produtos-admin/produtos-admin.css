@@ -1,0 +1,87 @@
+.produtos-admin {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+  }
+  
+  .titulo {
+    text-align: center;
+    margin-bottom: 35px;
+  }
+  
+  .titulo h1 {
+    color: #9b526b;
+    font-size: 30px;
+    margin-bottom: 10px;
+  }
+  
+  .titulo p {
+    color: #666;
+  }
+  
+  .formulario,
+  .lista-produtos {
+    background-color: white;
+    border: 1px solid #ead5dc;
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 25px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  }
+  
+  .formulario h2,
+  .lista-produtos h2 {
+    color: #9b526b;
+    margin-bottom: 25px;
+  }
+  
+  .campo {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  .campo label {
+    color: #684451;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  
+  .campo input,
+  .campo textarea {
+    padding: 12px;
+    border: 1px solid #d9c2ca;
+    border-radius: 8px;
+    font-size: 15px;
+  }
+  
+  .campo textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+  
+  .formulario button {
+    background-color: #9b526b;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 13px 25px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .formulario button:hover {
+    background-color: #7e4056;
+  }
+  
+  .lista-produtos p {
+    color: #777;
+  }
+  
+  @media (max-width: 600px) {
+    .formulario,
+    .lista-produtos {
+      padding: 20px;
+    }
+  }
