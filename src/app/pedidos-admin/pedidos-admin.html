@@ -1,0 +1,53 @@
+<section class="pedidos-admin">
+
+    <div class="titulo">
+      <h1>Gerenciamento de Pedidos</h1>
+      <p>Consulte e gerencie os pedidos realizados na loja.</p>
+    </div>
+  
+    <div class="lista-pedidos">
+      <h2>Pedidos realizados</h2>
+  
+      <div class="campo">
+        <label>Pesquisar pedido</label>
+        <input
+          type="text"
+          placeholder="Digite o número do pedido ou nome do cliente">
+      </div>
+  
+      <div class="campo">
+        <label>Filtrar por status</label>
+        <select>
+          <option value="">Todos os status</option>
+          <option value="Pendente">Pendente</option>
+          <option value="Em preparação">Em preparação</option>
+          <option value="Enviado">Enviado</option>
+          <option value="Entregue">Entregue</option>
+          <option value="Cancelado">Cancelado</option>
+        </select>
+      </div>
+  
+      <div class="tabela">
+        <table>
+          <thead>
+            <tr>
+              <th>Nº Pedido</th>
+              <th>Cliente</th>
+              <th>Data</th>
+              <th>Valor total</th>
+              <th>Status</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+  
+          <tbody>
+            <tr>
+              <td colspan="6">Nenhum pedido realizado ainda.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+    </div>
+  
+  </section>

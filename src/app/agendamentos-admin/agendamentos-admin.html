@@ -1,0 +1,53 @@
+<section class="agendamentos-admin">
+
+    <div class="titulo">
+      <h1>Gerenciamento de Agendamentos</h1>
+      <p>Consulte e gerencie os serviços agendados pelos clientes.</p>
+    </div>
+  
+    <div class="lista-agendamentos">
+      <h2>Agendamentos realizados</h2>
+  
+      <div class="campo">
+        <label>Pesquisar agendamento</label>
+        <input
+          type="text"
+          placeholder="Digite o nome do cliente">
+      </div>
+  
+      <div class="campo">
+        <label>Filtrar por status</label>
+        <select>
+          <option value="">Todos os status</option>
+          <option value="Pendente">Pendente</option>
+          <option value="Confirmado">Confirmado</option>
+          <option value="Concluído">Concluído</option>
+          <option value="Cancelado">Cancelado</option>
+        </select>
+      </div>
+  
+      <div class="tabela">
+        <table>
+          <thead>
+            <tr>
+              <th>Cliente</th>
+              <th>Serviço</th>
+              <th>Funcionário</th>
+              <th>Data</th>
+              <th>Horário</th>
+              <th>Status</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+  
+          <tbody>
+            <tr>
+              <td colspan="7">Nenhum agendamento realizado ainda.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+    </div>
+  
+  </section>
