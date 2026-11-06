@@ -1,41 +1,89 @@
+
 <section class="servicos-admin">
 
-    <div class="titulo">
-      <h1>Gerenciamento de Serviços</h1>
-      <p>Cadastre e gerencie os serviços oferecidos pela estética.</p>
+  <div class="titulo">
+    <h1>Gerenciamento de Serviços</h1>
+    <p>Cadastre e gerencie os serviços oferecidos pela estética.</p>
+  </div>
+
+  <div class="formulario">
+    <h2>Cadastrar serviço</h2>
+
+    <form>
+
+      <div class="campo">
+        <label>Nome do serviço</label>
+        <input
+          type="text"
+          name="nome"
+          [(ngModel)]="novoServico.nome"
+          placeholder="Digite o nome do serviço">
+      </div>
+
+      <div class="campo">
+        <label>Descrição</label>
+        <textarea
+          name="descricao"
+          [(ngModel)]="novoServico.descricao"
+          placeholder="Digite a descrição do serviço">
+        </textarea>
+      </div>
+
+      <div class="campo">
+        <label>Valor</label>
+        <input
+          type="number"
+          name="valor"
+          [(ngModel)]="novoServico.valor"
+          placeholder="0,00">
+      </div>
+
+      <div class="campo">
+        <label>Duração (em minutos)</label>
+        <input
+          type="number"
+          name="duracao"
+          [(ngModel)]="novoServico.duracao"
+          placeholder="Ex: 60">
+      </div>
+
+      <button type="button" (click)="cadastrarServico()">
+        Cadastrar serviço
+      </button>
+
+    </form>
+  </div>
+
+  <div class="lista-servicos">
+
+    <h2>Serviços cadastrados</h2>
+
+    <p *ngIf="servicos.length === 0">
+      Nenhum serviço cadastrado ainda.
+    </p>
+
+    <div
+      class="servico"
+      *ngFor="let servico of servicos; let i = index">
+
+      <h3>{{ servico.nome }}</h3>
+
+      <p>{{ servico.descricao }}</p>
+
+      <p>Valor: {{ servico.valor | currency:'BRL' }}</p>
+
+      <p>Duração: {{ servico.duracao }} minutos</p>
+
+      <button type="button" (click)="editarServico(i)">
+        Editar serviço
+      </button>
+
+      <button type="button" (click)="excluirServico(i)">
+        Excluir serviço
+      </button>
+
     </div>
-  
-    <div class="formulario">
-      <h2>Cadastrar serviço</h2>
-  
-      <form>
-        <div class="campo">
-          <label>Nome do serviço</label>
-          <input type="text" placeholder="Digite o nome do serviço">
-        </div>
-  
-        <div class="campo">
-          <label>Descrição</label>
-          <textarea placeholder="Digite a descrição do serviço"></textarea>
-        </div>
-  
-        <div class="campo">
-          <label>Valor</label>
-          <input type="number" placeholder="0,00">
-        </div>
-  
-        <div class="campo">
-          <label>Duração (em minutos)</label>
-          <input type="number" placeholder="Ex: 60">
-        </div>
-  
-        <button type="button">Cadastrar serviço</button>
-      </form>
-    </div>
-  
-    <div class="lista-servicos">
-      <h2>Serviços cadastrados</h2>
-      <p>Nenhum serviço cadastrado ainda.</p>
-    </div>
-  
-  </section>
+
+  </div>
+
+</section>

@@ -1,53 +1,115 @@
+
 <section class="pedidos-admin">
 
-    <div class="titulo">
-      <h1>Gerenciamento de Pedidos</h1>
-      <p>Consulte e gerencie os pedidos realizados na loja.</p>
-    </div>
-  
-    <div class="lista-pedidos">
-      <h2>Pedidos realizados</h2>
-  
+  <div class="titulo">
+    <h1>Gerenciamento de Pedidos</h1>
+    <p>Consulte e gerencie os pedidos realizados na loja.</p>
+  </div>
+
+  <div class="lista-pedidos">
+
+    <h2>Pedidos cadastrados</h2>
+
+    <div class="filtros">
+
       <div class="campo">
         <label>Pesquisar pedido</label>
         <input
           type="text"
-          placeholder="Digite o número do pedido ou nome do cliente">
+          name="pesquisa"
+          [(ngModel)]="pesquisa"
+          placeholder="Digite o cliente ou número do pedido">
       </div>
-  
+
       <div class="campo">
         <label>Filtrar por status</label>
-        <select>
+        <select name="filtroStatus" [(ngModel)]="filtroStatus">
           <option value="">Todos os status</option>
           <option value="Pendente">Pendente</option>
-          <option value="Em preparação">Em preparação</option>
-          <option value="Enviado">Enviado</option>
-          <option value="Entregue">Entregue</option>
+          <option value="Em andamento">Em andamento</option>
+          <option value="Concluído">Concluído</option>
           <option value="Cancelado">Cancelado</option>
         </select>
       </div>
-  
-      <div class="tabela">
-        <table>
-          <thead>
-            <tr>
-              <th>Nº Pedido</th>
-              <th>Cliente</th>
-              <th>Data</th>
-              <th>Valor total</th>
-              <th>Status</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
-  
-          <tbody>
-            <tr>
-              <td colspan="6">Nenhum pedido realizado ainda.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-  
+
     </div>
-  
-  </section>
+
+    <div class="tabela">
+      <table>
+
+        <thead>
+          <tr>
+            <th>Número</th>
+            <th>Cliente</th>
+            <th>Data</th>
+            <th>Total</th>
+            <th>Status</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr *ngIf="pedidosFiltrados.length === 0">
+            <td colspan="6">Nenhum pedido encontrado.</td>
+          </tr>
+
+          <tr *ngFor="let pedido of pedidosFiltrados">
+
+            <td>{{ pedido.numero }}</td>
+            <td>{{ pedido.cliente }}</td>
+            <td>{{ pedido.data }}</td>
+            <td>{{ pedido.total | currency:'BRL' }}</td>
+
+            <td>
+              <select
+                [ngModel]="pedido.status"
+                (ngModelChange)="atualizarStatus(pedido, $event)"
+                [name]="'status-' + pedido.numero">
+                <option value="Pendente">Pendente</option>
+                <option value="Em andamento">Em andamento</option>
+                <option value="Concluído">Concluído</option>
+                <option value="Cancelado">Cancelado</option>
+              </select>
+            </td>
+
+            <td>
+              <button
+                type="button"
+                (click)="visualizarPedido(pedido)">
+                Visualizar
+              </button>
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+    </div>
+
+  </div>
+
+  <div class="modal" *ngIf="pedidoSelecionado">
+
+    <div class="modal-conteudo">
+
+      <h2>Detalhes do Pedido</h2>
+
+      <p><strong>Número:</strong> {{ pedidoSelecionado.numero }}</p>
+      <p><strong>Cliente:</strong> {{ pedidoSelecionado.cliente }}</p>
+      <p><strong>Data:</strong> {{ pedidoSelecionado.data }}</p>
+      <p><strong>Total:</strong> {{ pedidoSelecionado.total | currency:'BRL' }}</p>
+      <p><strong>Status:</strong> {{ pedidoSelecionado.status }}</p>
+
+      <button
+        type="button"
+        (click)="fecharVisualizacao()">
+        Fechar
+      </button>
+
+    </div>
+
+  </div>
+
+</section>

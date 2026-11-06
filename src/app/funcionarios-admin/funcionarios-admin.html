@@ -1,41 +1,113 @@
+
 <section class="funcionarios-admin">
 
-    <div class="titulo">
-      <h1>Gerenciamento de Funcionários</h1>
-      <p>Consulte e gerencie os funcionários da estética.</p>
+  <div class="titulo">
+    <h1>Gerenciamento de Funcionários</h1>
+    <p>Consulte e gerencie os funcionários da estética.</p>
+  </div>
+
+  <div class="lista-funcionarios">
+
+    <h2>Funcionários cadastrados</h2>
+
+    <div class="campo">
+      <label>Pesquisar funcionário</label>
+
+      <input
+        type="text"
+        name="pesquisa"
+        [(ngModel)]="pesquisa"
+        placeholder="Digite o nome ou CPF do funcionário">
     </div>
-  
-    <div class="lista-funcionarios">
-      <h2>Funcionários cadastrados</h2>
-  
-      <div class="campo">
-        <label>Pesquisar funcionário</label>
-        <input
-          type="text"
-          placeholder="Digite o nome ou CPF do funcionário">
-      </div>
-  
-      <div class="tabela">
-        <table>
-          <thead>
-            <tr>
-              <th>Nome</th>
-              <th>CPF</th>
-              <th>Cargo</th>
-              <th>E-mail</th>
-              <th>Telefone</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
-  
-          <tbody>
-            <tr>
-              <td colspan="6">Nenhum funcionário cadastrado ainda.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-  
+
+    <div class="tabela">
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Cargo</th>
+            <th>E-mail</th>
+            <th>Telefone</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr *ngIf="funcionariosFiltrados.length === 0">
+            <td colspan="6">
+              Nenhum funcionário encontrado.
+            </td>
+          </tr>
+
+          <tr *ngFor="let funcionario of funcionariosFiltrados">
+
+            <td>{{ funcionario.nome }}</td>
+            <td>{{ funcionario.cpf }}</td>
+            <td>{{ funcionario.cargo }}</td>
+            <td>{{ funcionario.email }}</td>
+            <td>{{ funcionario.telefone }}</td>
+
+            <td>
+              <button
+                type="button"
+                (click)="visualizarFuncionario(funcionario)">
+                Visualizar
+              </button>
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
     </div>
-  
-  </section>
+
+  </div>
+
+  <div class="modal" *ngIf="funcionarioSelecionado">
+
+    <div class="modal-conteudo">
+
+      <h2>Dados do Funcionário</h2>
+
+      <p>
+        <strong>Nome:</strong>
+        {{ funcionarioSelecionado.nome }}
+      </p>
+
+      <p>
+        <strong>CPF:</strong>
+        {{ funcionarioSelecionado.cpf }}
+      </p>
+
+      <p>
+        <strong>Cargo:</strong>
+        {{ funcionarioSelecionado.cargo }}
+      </p>
+
+      <p>
+        <strong>E-mail:</strong>
+        {{ funcionarioSelecionado.email }}
+      </p>
+
+      <p>
+        <strong>Telefone:</strong>
+        {{ funcionarioSelecionado.telefone }}
+      </p>
+
+      <button
+        type="button"
+        (click)="fecharVisualizacao()">
+        Fechar
+      </button>
+
+    </div>
+
+  </div>
+
+</section>

@@ -1,40 +1,87 @@
+
 <section class="clientes-admin">
 
-    <div class="titulo">
-      <h1>Gerenciamento de Clientes</h1>
-      <p>Consulte e gerencie os clientes cadastrados na loja.</p>
+  <div class="titulo">
+    <h1>Gerenciamento de Clientes</h1>
+    <p>Consulte e gerencie os clientes cadastrados na loja.</p>
+  </div>
+
+  <div class="lista-clientes">
+
+    <h2>Clientes cadastrados</h2>
+
+    <div class="campo">
+      <label>Pesquisar cliente</label>
+
+      <input
+        type="text"
+        name="pesquisa"
+        [(ngModel)]="pesquisa"
+        placeholder="Digite o nome ou CPF do cliente">
+    </div>
+
+    <div class="tabela">
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>E-mail</th>
+            <th>Telefone</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr *ngIf="clientesFiltrados.length === 0">
+            <td colspan="5">
+              Nenhum cliente encontrado.
+            </td>
+          </tr>
+
+          <tr *ngFor="let cliente of clientesFiltrados">
+            <td>{{ cliente.nome }}</td>
+            <td>{{ cliente.cpf }}</td>
+            <td>{{ cliente.email }}</td>
+            <td>{{ cliente.telefone }}</td>
+            <td>
+              <button type="button" (click)="visualizarCliente(cliente)">
+                 Visualizar
+              </button>
+            </td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+  <div class="modal" *ngIf="clienteSelecionado">
+
+    <div class="modal-conteudo">
+  
+      <h2>Dados do Cliente</h2>
+  
+      <p><strong>Nome:</strong> {{ clienteSelecionado.nome }}</p>
+  
+      <p><strong>CPF:</strong> {{ clienteSelecionado.cpf }}</p>
+  
+      <p><strong>E-mail:</strong> {{ clienteSelecionado.email }}</p>
+  
+      <p><strong>Telefone:</strong> {{ clienteSelecionado.telefone }}</p>
+  
+      <button type="button" (click)="fecharVisualizacao()">
+        Fechar
+      </button>
+  
     </div>
   
-    <div class="lista-clientes">
-      <h2>Clientes cadastrados</h2>
-  
-      <div class="campo">
-        <label>Pesquisar cliente</label>
-        <input
-          type="text"
-          placeholder="Digite o nome ou CPF do cliente">
-      </div>
-  
-      <div class="tabela">
-        <table>
-          <thead>
-            <tr>
-              <th>Nome</th>
-              <th>CPF</th>
-              <th>E-mail</th>
-              <th>Telefone</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
-  
-          <tbody>
-            <tr>
-              <td colspan="5">Nenhum cliente cadastrado ainda.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-  
-    </div>
-  
-  </section>
+  </div>
+
+</section>

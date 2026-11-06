@@ -1,9 +1,12 @@
+
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-produtos-admin',
   standalone: true,
-  imports: [],
+  imports: [FormsModule, CommonModule],
   templateUrl: './produtos-admin.html',
   styleUrl: './produtos-admin.css'
 })
@@ -21,8 +24,8 @@ export class ProdutosAdmin {
   cadastrarProduto() {
 
     if (
-      !this.novoProduto.nome ||
-      !this.novoProduto.descricao ||
+      !this.novoProduto.nome.trim() ||
+      !this.novoProduto.descricao.trim() ||
       this.novoProduto.preco <= 0 ||
       this.novoProduto.quantidade < 0
     ) {
@@ -42,6 +45,30 @@ export class ProdutosAdmin {
       preco: 0,
       quantidade: 0
     };
+  }
+
+  editarProduto(index: number) {
+
+    this.novoProduto = {
+      ...this.produtos[index]
+    };
+  
+    this.produtos.splice(index, 1);
+  
+  }
+
+  excluirProduto(index: number) {
+
+    const confirmar = confirm(
+      'Tem certeza que deseja excluir este produto?'
+    );
+  
+    if (confirmar) {
+      this.produtos.splice(index, 1);
+  
+      alert('Produto excluído com sucesso!');
+    }
+  
   }
 
 }

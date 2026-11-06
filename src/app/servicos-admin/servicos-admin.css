@@ -85,3 +85,53 @@
       padding: 20px;
     }
   }
+
+  
+.servico {
+  background-color: #fffafa;
+  border: 1px solid #ead5dc;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 18px;
+}
+
+.servico h3 {
+  color: #9b526b;
+  margin-bottom: 12px;
+}
+
+.servico p {
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.servico button {
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  margin-top: 12px;
+  margin-right: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* Botão editar */
+.servico button:first-of-type {
+  background-color: #ead5dc;
+  color: #684451;
+}
+
+.servico button:first-of-type:hover {
+  background-color: #d9b9c5;
+}
+
+/* Botão excluir */
+.servico button:last-of-type {
+  background-color: #9b526b;
+  color: white;
+}
+
+.servico button:last-of-type:hover {
+  background-color: #7e4056;
+}
